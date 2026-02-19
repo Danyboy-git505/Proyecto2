@@ -64,12 +64,14 @@
                                         <label for="cardNumber" class="form-label">Número de Tarjeta</label>
                                         <input type="text" class="form-control" id="cardNumber" placeholder="1234 5678 9012 3456" required>
                                     </div>
+                                   
                                     <div class="mb-3">
                                         <label for="pin" class="form-label">PIN</label>
-                                        <input type="password" class="form-control" id="pin" placeholder="****" required>
+                                        <input type="password" class="form-control" id="pin" placeholder="Maximo 4 digitos" required maxlength="4" >
                                     </div>
                                     <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
                                 </form>
+                                <p id ="mensajeError" class = "text-center mt-3 fw-blod"></p>
                                 <div class="mt-3 text-center">
                                     <a href="#" class="text-decoration-none">¿Olvidaste tu PIN?</a>
                                 </div>
@@ -93,5 +95,8 @@
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
+        // conectar con el Datos.js para la logica del login
+        <script src="login.js"></script> 
+
     </body>
 </html>
