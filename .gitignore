@@ -1,3 +1,6 @@
 node_modules/
 .env
 .DS_Store
+src/credentials.json
+src/tokens.json
+DOCUMENTACION_COMPLETA.md
