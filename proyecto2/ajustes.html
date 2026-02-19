@@ -1,0 +1,138 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Ajustes — Mi Banco</title>
+	<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+	<header id="ajustes-header" class="app-header">
+		<div id="brand" class="brand">Mi Banco</div>
+		<div class="header-right">
+			<div id="user-name" class="user-name">Usuario</div>
+		</div>
+	</header>
+
+	<main id="ajustes-main" class="container">
+		<section id="settings-panel" class="panel card">
+			<h1 id="settings-title">Ajustes</h1>
+
+			<div class="settings-grid">
+				<!-- Preferencias -->
+				<div id="prefs" class="settings-section card small-card">
+					<h2 class="section-title">Preferencias</h2>
+
+					<div class="setting-item row" data-setting="notifications">
+						<div class="setting-label">Notificaciones</div>
+						<div class="setting-control">
+							<input id="toggle-notifications" type="checkbox" name="notifications">
+						</div>
+					</div>
+
+					<div class="setting-item row" data-setting="language">
+						<div class="setting-label">Idioma</div>
+						<div class="setting-control">
+							<select id="select-language" name="language">
+								<option value="es">Español</option>
+								<option value="en">English</option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<!-- Seguridad -->
+				<div id="security" class="settings-section card small-card">
+					<h2 class="section-title">Seguridad</h2>
+
+					<div class="setting-item row" data-setting="biometric">
+						<div class="setting-label">Autenticación biométrica</div>
+						<div class="setting-control">
+							<input id="toggle-biometric" type="checkbox" name="biometric">
+						</div>
+					</div>
+
+					<div class="setting-item row">
+						<div class="setting-label">Cambiar PIN</div>
+						<div class="setting-control">
+							<button id="btn-change-pin" class="btn small">Cambiar</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- Sesión -->
+				<div id="session" class="settings-section card small-card">
+					<h2 class="section-title">Sesión</h2>
+
+					<div class="setting-item row">
+						<div class="setting-label">Cerrar sesión en este dispositivo</div>
+							<div class="setting-control">
+								<button id="btn-logout" class="btn primary">Cerrar sesión</button>
+							</div>
+					</div>
+
+					<div class="setting-item muted-note">
+						<small>Al cerrar sesión se cerrará tu sesión local. Necesitarás volver a iniciar sesión para acceder.</small>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer id="ajustes-footer" class="app-footer">© Mi Banco</footer>
+
+	<!-- Modales simples -->
+	<div id="modal-root">
+		<div id="modal-overlay" class="modal-overlay hidden"></div>
+
+		<div id="modal-change-pin" class="modal hidden" role="dialog" aria-modal="true">
+			<h3>Cambiar PIN</h3>
+			<form id="form-change-pin">
+				<label for="current-pin">PIN actual</label>
+				<input id="current-pin" type="password" inputmode="numeric" maxlength="6">
+
+				<label for="new-pin">Nuevo PIN</label>
+				<input id="new-pin" type="password" inputmode="numeric" maxlength="6">
+
+				<label for="confirm-pin">Confirmar PIN</label>
+				<input id="confirm-pin" type="password" inputmode="numeric" maxlength="6">
+
+				<div class="modal-actions">
+					<button type="button" id="btn-cancel-pin" class="btn">Cancelar</button>
+					<button type="submit" id="btn-save-pin" class="btn primary">Guardar</button>
+				</div>
+			</form>
+		</div>
+
+		<div id="modal-logout" class="modal hidden" role="dialog" aria-modal="true">
+			<h3>Confirmar cierre de sesión</h3>
+			<p>¿Deseas cerrar sesión en este dispositivo?</p>
+			<div class="modal-actions">
+				<button id="btn-cancel-logout" class="btn">Cancelar</button>
+				<button id="btn-confirm-logout" class="btn primary">Cerrar sesión</button>
+			</div>
+		</div>
+	</div>
+
+	<script src="ajustes.js"></script>
+
+	<!-- SELECTORES y VARIABLES para usar en JS:
+
+	Selectores usados:
+		'#toggle-notifications', '#select-language', '#toggle-biometric',
+		'#btn-change-pin', '#btn-logout', '#modal-change-pin', '#modal-logout',
+		'#form-change-pin', '#btn-confirm-logout'
+
+	Estado sugerido (ejemplo localStorage key: 'ajustesUsuario'):
+		{
+			notifications: true,
+			language: 'es',
+			biometric: false
+		}
+
+	-->
+
+</body>
+</html>
+

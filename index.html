@@ -1,0 +1,183 @@
+<!doctype html>
+<!-- Documento HTML principal del portafolio -->
+<html lang="es">
+	<head>
+		<!-- Metadatos básicos y título que aparece en la pestaña del navegador -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Portafolio - Junior Developer</title>
+		<!-- Enlace a Bootstrap (CDN): proporciona estilos y componentes responsivos -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        
+		<!-- Estilos personalizados del proyecto -->
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<!-- Cabecera con la barra de navegación -->
+		<header class="bg-dark text-white">
+			<nav class="container navbar navbar-expand-lg navbar-dark">
+				<!-- Marca o nombre que aparece a la izquierda de la barra -->
+				<a class="navbar-brand" href="#">Mi Portafolio</a>
+				<!-- Botón que aparece en pantallas pequeñas para mostrar/ocultar el menú -->
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<!-- Enlaces de navegación (se colapsan en pantallas pequeñas) -->
+				<div class="collapse navbar-collapse" id="navMenu">
+					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+						<li class="nav-item"><a class="nav-link" href="#about">Sobre mí</a></li>
+						<li class="nav-item"><a class="nav-link" href="#skills">Habilidades</a></li>
+						<li class="nav-item"><a class="nav-link" href="#projects">Proyectos</a></li>
+						<li class="nav-item"><a class="nav-link" href="#contact">Contacto</a></li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+
+		<!-- Contenido principal de la página -->
+		<main class="mt-4">
+			<!-- Sección principal (Hero) con presentación y llamada a la acción -->
+			<section id="hero" class="container py-5">
+				<div class="row align-items-center">
+					<div class="col-lg-7">
+						<!-- Nombre y breve descripción; reemplaza [Tu Nombre] por tu nombre real -->
+						<h1 class="display-5">Hola, soy Danyboy</h1>
+						<p class="lead text-muted">Junior Developer enfocado en crear interfaces limpias y funcionales. Actualmente aprendiendo mejores prácticas en JavaScript y despliegue.</p>
+						<!-- Botones de acción rápida que enlazan a secciones internas -->
+						<p>
+							<a href="#projects" class="btn btn-primary me-2">Ver proyectos</a>
+							<a href="#contact" class="btn btn-outline-secondary">Contactar</a>
+						</p>
+					</div>
+
+					<!-- Imagen de perfil (placeholder). Sustituye por tu foto si la tienes -->
+					<div class="col-lg-5 text-center">
+						<img src="https://via.placeholder.com/220x220.png?text=Foto" alt="Foto" class="rounded-circle img-fluid shadow-sm my-3">
+					</div>
+				</div>
+			</section>
+
+			<!-- Sección 'Sobre mí' con una breve presentación profesional -->
+			<section id="about" class="container py-4">
+				<div class="card shadow-sm">
+					<div class="card-body">
+						<h2 class="h5">Sobre mí</h2>
+						<!-- Párrafo principal: personalízalo si quieres añadir logros o formación -->
+						<p>Soy Danyboy, desarrollador web junior enfocado en crear interfaces funcionales, accesibles y visualmente atractivas. Me gusta entender las necesidades reales de los usuarios y convertirlas en soluciones sencillas y efectivas. Actualmente amplío mis conocimientos en tecnologías web (HTML, CSS, JavaScript, Bootstrap) y en lenguajes más técnicos como C++ y PHP, además de practicar control de versiones con Git y consumo de APIs. Busco mi primera oportunidad profesional para seguir aprendiendo y aportar con entusiasmo al equipo.</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Sección de habilidades: utiliza badges para mostrar tecnologías conocidas -->
+			<section id="skills" class="container py-4">
+				<h3>Habilidades Front-end</h3>
+				<div class="d-flex flex-wrap gap-2 mt-2">
+					<span class="badge bg-primary">HTML</span>
+					<span class="badge bg-primary">CSS</span>
+					<span class="badge bg-primary">JavaScript</span>
+					<span class="badge bg-primary">Bootstrap</span>
+				</div>
+
+				<h3>Habilidades Back-end</h3>
+				<div class="d-flex flex-wrap gap-2 mt-2">
+					<span class="badge bg-primary">C++</span>
+					<span class="badge bg-primary">Java</span>
+					<span class="badge bg-primary">Python</span>
+					<span class="badge bg-primary">PHP</span>
+					
+					<span class="badge bg-secondary">APIs</span>
+				</div>
+
+				<h3>Herramientas famiiarizadas</h3>
+				<div class="d-flex flex-wrap gap-2 mt-2">
+					<span class="badge bg-primary">Figma</span>
+					<span class="badge bg-primary">Canva</span>
+					<span class="badge bg-primary">Google Drive</span>
+					<span class="badge bg-primary">AI-Assisted Development</span>
+					<span class="badge bg-secondary">Git</span>
+				</div>
+			</section>
+
+			<!-- Galería de proyectos en tarjetas; añade enlaces reales a repositorios y demos -->
+			<section id="projects" class="container py-4">
+				<h3>Proyectos</h3>
+				<div class="row g-3 mt-2">
+					<div class="col-md-6">
+						<div class="card h-100">
+							<div class="card-body">
+								<h5 class="card-title">Proyecto 1 - Organizador de tareas</h5>
+								<p class="card-text">Pequeña aplicación para gestionar y orgranizar tareas usando HTML, CSS y JavaScript.</p>
+								<!-- Enlaces de ejemplo: reemplaza # por las URLs reales -->
+								<a href="proyecto1.html" class="card-link">Ver proyecto</a>
+								<a href="#" class="card-link">Pendiente</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="card h-100">
+							<div class="card-body">
+								<h5 class="card-title">Proyecto 2 - PENDIENTE</h5>
+								<p class="card-text">Landing responsive creada con Bootstrap, enfocada en accesibilidad y performance.</p>
+								<a href="./proyecto2/proyecto2.html" class="card-link">Ver proyecto</a>
+								<a href="#" class="card-link">Pendiente</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-12 col-md-6">
+						<div class="card h-100">
+							<div class="card-body">
+								<h5 class="card-title">Proyecto 3 - API Fetch</h5>
+								<p class="card-text">Mini proyecto que consume una API pública y muestra los resultados con paginación básica.</p>
+								<a href="#" class="card-link">Repositorio</a>
+								<a href="#" class="card-link">Demo</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-12 col-md-6">
+						<div class="card h-100">
+							<div class="card-body">
+								<h5 class="card-title">Practicas con (C++, JS, Java, Python)</h5>
+								<p class="card-text">Ejercicios prácticos en múltiples lenguajes de programación para fortalecer habilidades.</p>
+								<a href="#" class="card-link">Repositorio</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Formulario de contacto (demo): el onsubmit muestra una alerta y evita envío real -->
+			<section id="contact" class="container py-4">
+				<h3>Contacto</h3>
+				<form class="row g-3 mt-2" action="#" onsubmit="alert('Formulario no enviado en demo'); return false;">
+					<div class="col-md-6">
+						<label for="name" class="form-label">Nombre</label>
+						<input type="text" class="form-control" id="name" placeholder="Tu nombre">
+					</div>
+					<div class="col-md-6">
+						<label for="email" class="form-label">Email</label>
+						<input type="email" class="form-control" id="email" placeholder="tu@email.com">
+					</div>
+					<div class="col-12">
+						<label for="message" class="form-label">Mensaje</label>
+						<textarea class="form-control" id="message" rows="4" placeholder="Escribe tu mensaje"></textarea>
+					</div>
+					<div class="col-12">
+						<button class="btn btn-primary">Enviar</button>
+					</div>
+				</form>
+			</section>
+		</main>
+
+		<!-- Pie de página simple -->
+		<footer class="bg-dark text-white py-3 mt-4">
+			<div class="container text-center small">© 2026 — Portafolio Junior. Hecho con Bootstrap.</div>
+		</footer>
+
+		<!-- Script de Bootstrap (bundle incluye Popper) -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+	</body>
+</html>

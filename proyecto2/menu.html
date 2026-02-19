@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Mi Banco — Dashboard</title>
+	<link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_circle" />
+</head>
+<body>
+	<!-- App header -->
+	<header id="app-header" class="app-header">
+		<div id="brand" class="brand">Mi Banco</div>
+		<div id="user-info" class="user-info">
+			<img id="user-avatar" class="avatar" src="./img/account_circle_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="Avatar usuario">
+			<div class="user-meta">
+				<div id="user-name" class="user-name">Usuario Nombre</div>
+				<div id="user-last-login" class="user-last-login">Último acceso: --/--/----</div>
+			</div>
+			<!-- Botón cerrar sesión -->
+			<button id="btn-logout-menu" class="btn small" title="Cerrar sesión">Cerrar sesión</button>
+		</div>
+	</header>
+
+	<!-- Main layout: sidebar + content -->
+	<div id="app-layout" class="layout">
+		<!-- Sidebar (cuentas, tarjetas, atajos) -->
+		<aside id="sidebar" class="sidebar">
+			<nav id="main-nav" class="nav">
+				<ul>
+					<li><a href="#" id="nav-dashboard" class="nav-link active">Resumen</a></li>
+					<li><a href="#" id="nav-transfers" class="nav-link">Transferencias</a></li>
+					<li><a href="#" id="nav-payments" class="nav-link">Pagos</a></li>
+					<li><a href="#" id="nav-cards" class="nav-link">Tarjetas</a></li>
+					<li><a href="#" id="nav-settings" class="nav-link">Ajustes</a></li>
+				</ul>
+			</nav>
+			<section id="accounts-list" class="panel accounts-list">
+				<h3>Cuentas</h3>
+				<ul id="accounts" class="list">
+					<!-- Cada cuenta: li.account-item con data-account-id -->
+				</ul>
+			</section>
+		</aside>
+
+		<!-- Content area -->
+		<main id="content" class="content">
+			<!-- Dashboard / Resumen -->
+			<section id="dashboard" class="view">
+				<div class="top-row">
+					<div id="balance-card" class="card balance-card">
+						<div class="card-header">Saldo disponible</div>
+						<div id="account-balance" class="card-value">$0.00</div>
+						<div id="account-currency" class="card-sub">ARS</div>
+					</div>
+
+					<div id="quick-actions" class="card quick-actions">
+						<button id="btn-transfer" class="btn action">Transferir</button>
+						<button id="btn-pay" class="btn action">Pagar</button>
+						<button id="btn-deposit" class="btn action">Depositar</button>
+					</div>
+				</div>
+
+				<div class="mid-row">
+					<section id="recent-transactions" class="panel transactions">
+						<h3>Movimientos recientes</h3>
+						<ul id="transactions-list" class="list transactions-list">
+							<!-- li.transaction-item { data-transaction-id } -->
+						</ul>
+						<button id="btn-see-more" class="btn small">Ver más</button>
+					</section>
+
+					<section id="cards-panel" class="panel cards-panel">
+						<h3>Tarjetas</h3>
+						<ul id="cards-list" class="list cards-list">
+							<!-- li.card-item { data-card-id } -->
+						</ul>
+						<button id="btn-add-card" class="btn small">Agregar tarjeta</button>
+					</section>
+				</div>
+
+				<div class="bottom-row">
+					<section id="transfer-preview" class="panel transfer-preview">
+						<h3>Transferencia rápida</h3>
+						<form id="form-transfer" class="form">
+							<label for="from-account">Desde</label>
+							<select id="from-account" name="fromAccount"></select>
+
+							<label for="to-account">Para</label>
+							<input id="to-account" name="toAccount" placeholder="CBU o Alias">
+
+							<label for="transfer-amount">Monto</label>
+							<input id="transfer-amount" name="amount" type="number" step="0.01" placeholder="0.00">
+
+							<button id="transfer-submit" class="btn primary" type="submit">Enviar</button>
+						</form>
+					</section>
+
+					<section id="notifications" class="panel notifications">
+						<h3>Notificaciones</h3>
+						<ul id="notifications-list" class="list"></ul>
+					</section>
+				</div>
+			</section>
+		</main>
+	</div>
+
+	<!-- Footer -->
+	<footer id="app-footer" class="app-footer">© Mi Banco</footer>
+
+	<!-- VARIABLES para usar en menu.js :
+
+	// Nombres de variables de estado recomendadas en JS
+	// usuarioActual, cuentas, tarjetas, movimientos, notificaciones
+	// Ejemplo:
+	// let usuarioActual = { id, nombre, avatar };
+	// let cuentas = [ { id, alias, saldo, moneda } ];
+	// let tarjetas = [ { id, tipo, numeroMasked, vto } ];
+	// let movimientos = [ { id, fecha, monto, descripcion, cuentaId } ];
+
+	-->
+// Script para manejar la lógica del dashboard (cargar datos, manejar eventos, etc.)
+    <script src="menu.js"></script>
+</body>
+</html>
+

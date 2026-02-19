@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Flujos Lógicos - Notion Style</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- PANEL IZQUIERDO -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>
+                    <i class="bi bi-diagram-3"></i>
+                    Flujos Lógicos
+                </h2>
+            </div>
+
+            <div class="state-section">
+                <label class="state-label">Estado Actual</label>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="stateToggle" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+                <div class="state-display">
+                    <span class="state-dot active" id="stateDot"></span>
+                    <span id="stateText">Activo</span>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <div class="info-item">
+                    <i class="bi bi-calendar-event"></i>
+                    <div>
+                        <strong>Eventos</strong>
+                        <span id="eventCount">0 programados</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="bi bi-lightning-charge"></i>
+                    <div>
+                        <strong>Estado del Sistema</strong>
+                        <span id="systemStatus">Funcionando</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="bi bi-clock-history"></i>
+                    <div>
+                        <strong>Última Actualización</strong>
+                        <span id="lastUpdate">Hace unos momentos</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- CONTENEDOR PRINCIPAL -->
+        <div class="main-content">
+            <!-- Header con Pestañas -->
+            <div class="content-header">
+                <div class="header-tabs">
+                    <button class="tab-btn active" id="tabCalendar" data-tab="calendar">
+                        <i class="bi bi-calendar3"></i>
+                        Calendario
+                    </button>
+                    <button class="tab-btn" id="tabNotes" data-tab="notes">
+                        <i class="bi bi-sticky"></i>
+                        Notas
+                    </button>
+                    <button class="tab-btn" id="tabContacts" data-tab="contacts">
+                        <i class="bi bi-person-circle"></i>
+                        Contactos
+                    </button>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-action" id="btnToday" title="Ir a hoy">
+                        <i class="bi bi-calendar-year"></i>
+                        Hoy
+                    </button>
+                    <button class="btn-action" id="btnAddEvent" title="Agregar evento">
+                        <i class="bi bi-plus-circle"></i>
+                        Nuevo Evento
+                    </button>
+                    <button class="btn-action" id="btnAddNote" title="Crear nota" style="display: none;">
+                        <i class="bi bi-plus-lg"></i>
+                        Nueva Tarea
+                    </button>
+                    <button class="btn-action" id="btnAddContact" title="Agregar contacto" style="display: none;">
+                        <i class="bi bi-person-plus"></i>
+                        Nuevo Contacto
+                    </button>
+                </div>
+            </div>
+
+            <!-- SECCIÓN CALENDARIO -->
+            <div class="tab-content active" id="sectionCalendar">
+                <!-- Cuerpo Central (BLOQUE IF) -->
+                <div class="calendar-container">
+                    <div class="calendar-wrapper" id="calendarSection">
+                        <div class="calendar-header">
+                            <h2 id="monthYearDisplay">Enero 2026</h2>
+                            <div class="calendar-nav">
+                                <button id="btnPrevMonth" title="Mes anterior">
+                                    <i class="bi bi-chevron-left"></i>
+                                </button>
+                                <button id="btnNextMonth" title="Mes siguiente">
+                                    <i class="bi bi-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="weekdays">
+                            <div class="weekday">Dom</div>
+                            <div class="weekday">Lun</div>
+                            <div class="weekday">Mar</div>
+                            <div class="weekday">Mié</div>
+                            <div class="weekday">Jue</div>
+                            <div class="weekday">Vie</div>
+                            <div class="weekday">Sáb</div>
+                        </div>
+
+                        <div class="days-grid" id="daysGrid"></div>
+                    </div>
+                </div>
+
+                <!-- Sección Inferior (BLOQUE ELSE) -->
+                <div class="else-section">
+                    <div class="else-container" id="elseContainer">
+                        <div class="else-header" id="elseHeader">
+                            <div class="else-header-title">
+                                <i class="bi bi-exclamation-triangle"></i>
+                                Sin eventos programados
+                            </div>
+                            <i class="bi bi-chevron-down toggle-icon"></i>
+                        </div>
+                        <div class="else-content">
+                            <div class="else-messages" id="elseMessages">
+                                <div class="message-item">
+                                    <div class="message-icon">
+                                        <i class="bi bi-info-circle"></i>
+                                    </div>
+                                    <div class="message-text">
+                                        <strong>Calendario vacío</strong>
+                                        <p>El estado está activo pero no hay eventos programados en el período actual. Crea un nuevo evento para comenzar.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="else-events-list" id="elseEventsList" style="display: none;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN NOTAS/TAREAS -->
+            <div class="tab-content" id="sectionNotes">
+                <div class="notes-container">
+                    <div class="notes-empty-state" id="notesEmptyState">
+                        <i class="bi bi-sticky"></i>
+                        <p>No tienes tareas aún</p>
+                        <small>Crea una nueva tarea para empezar</small>
+                    </div>
+                    <div class="notes-list" id="notesList"></div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN CONTACTOS -->
+            <div class="tab-content" id="sectionContacts">
+                <div class="contacts-container">
+                    <div class="contacts-list-section">
+                        <div class="contacts-empty-state" id="contactsEmptyState">
+                            <i class="bi bi-person-circle"></i>
+                            <p>No tienes contactos aún</p>
+                            <small>Agrégalos para comunicarte fácilmente</small>
+                        </div>
+                        <div class="contacts-list" id="contactsList"></div>
+                    </div>
+                </div>
+            </div>
+            </div>
+    </div>
+
+    <!-- MODAL: Ver Eventos del Día -->
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Eventos</h2>
+                <button id="closeEventModal" class="modal-close">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="eventsList" class="events-list"></div>
+            </div>
+            <div class="modal-footer">
+                <button id="addEventBtn" class="btn-modal-action btn-add">
+                    <i class="bi bi-plus-circle"></i> Nuevo Evento
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Agregar Nuevo Evento -->
+    <div id="addEventModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Crear Nuevo Evento</h2>
+                <button id="closeAddEventModal" class="modal-close">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="eventTitle">Título del Evento *</label>
+                    <input 
+                        type="text" 
+                        id="eventTitle" 
+                        placeholder="Ej: Reunión con el cliente"
+                        class="form-input"
+                    >
+                </div>
+                <div class="form-group">
+                    <label for="eventTime">Hora</label>
+                    <input 
+                        type="time" 
+                        id="eventTime" 
+                        value="09:00"
+                        class="form-input"
+                    >
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cancelEventBtn" class="btn-modal-action btn-cancel" onclick="closeAddEventModal()">
+                    Cancelar
+                </button>
+                <button id="saveEventBtn" class="btn-modal-action btn-save">
+                    <i class="bi bi-check-circle"></i> Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Agregar Nueva Nota/Tarea -->
+    <div id="addNoteModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Crear Nueva Tarea</h2>
+                <button id="closeAddNoteModal" class="modal-close">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="noteTitle">Título de la Tarea *</label>
+                    <input 
+                        type="text" 
+                        id="noteTitle" 
+                        placeholder="Ej: Completar informe de proyecto"
+                        class="form-input"
+                    >
+                </div>
+                <div class="form-group">
+                    <label for="noteDescription">Descripción (opcional)</label>
+                    <textarea 
+                        id="noteDescription" 
+                        placeholder="Agrega más detalles sobre la tarea..."
+                        class="form-input form-textarea"
+                        rows="4"
+                    ></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cancelNoteBtn" class="btn-modal-action btn-cancel" onclick="closeAddNoteModal()">
+                    Cancelar
+                </button>
+                <button id="saveNoteBtn" class="btn-modal-action btn-save">
+                    <i class="bi bi-check-circle"></i> Crear Tarea
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Agregar Nuevo Contacto -->
+    <div id="addContactModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Agregar Nuevo Contacto</h2>
+                <button id="closeAddContactModal" class="modal-close">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="contactName">Nombre Completo *</label>
+                    <input 
+                        type="text" 
+                        id="contactName" 
+                        placeholder="Ej: Juan Pérez García"
+                        class="form-input"
+                    >
+                </div>
+                <div class="form-group">
+                    <label for="contactAlias">Alias o Apodo (opcional)</label>
+                    <input 
+                        type="text" 
+                        id="contactAlias" 
+                        placeholder="Ej: Juanito"
+                        class="form-input"
+                    >
+                </div>
+                <div class="form-group">
+                    <label for="contactEmail">Correo Electrónico *</label>
+                    <input 
+                        type="email" 
+                        id="contactEmail" 
+                        placeholder="Ej: juan@ejemplo.com"
+                        class="form-input"
+                    >
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cancelContactBtn" class="btn-modal-action btn-cancel" onclick="closeAddContactModal()">
+                    Cancelar
+                </button>
+                <button id="saveContactBtn" class="btn-modal-action btn-save">
+                    <i class="bi bi-check-circle"></i> Guardar Contacto
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Chat con Contacto -->
+    <div id="chatModal" class="modal">
+        <div class="modal-content modal-chat">
+            <div class="modal-header">
+                <div class="chat-header-info">
+                    <h2 id="chatContactName">Chat</h2>
+                    <small id="chatContactEmail"></small>
+                </div>
+                <button id="closeChatModal" class="modal-close">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+            <div class="modal-body chat-messages-container">
+                <div class="chat-messages" id="chatMessages"></div>
+            </div>
+            <div class="modal-footer chat-footer">
+                <div class="chat-auth-status" id="chatAuthStatus" style="display: none; text-align: center; margin-bottom: 1rem;">
+                    <p style="color: #ff9800; margin-bottom: 0.5rem;">
+                        <i class="bi bi-exclamation-circle"></i> Debes autorizar Gmail para enviar correos
+                    </p>
+                    <a href="gmail-auth.html" class="btn-authorize-gmail" style="
+                        display: inline-block;
+                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        color: white;
+                        padding: 0.5rem 1rem;
+                        border-radius: 4px;
+                        text-decoration: none;
+                        font-size: 0.9rem;
+                        cursor: pointer;
+                    ">
+                        <i class="bi bi-google"></i> Autorizar Gmail
+                    </a>
+                </div>
+                <div class="chat-input-group">
+                    <input 
+                        type="text"
+                        id="chatSubject" 
+                        placeholder="Asunto..."
+                        class="chat-subject"
+                        style="
+                            width: 100%;
+                            padding: 0.75rem;
+                            border: 1px solid #e0e0e0;
+                            border-radius: 4px;
+                            margin-bottom: 0.5rem;
+                            font-size: 0.95rem;
+                            font-family: 'Segoe UI', Roboto, sans-serif;
+                        "
+                    />
+                    <textarea 
+                        id="chatInput" 
+                        placeholder="Escribe tu mensaje..."
+                        class="chat-input"
+                        rows="2"
+                    ></textarea>
+                    <button id="sendMessageBtn" class="btn-send-message">
+                        <i class="bi bi-send"></i>
+                    </button>
+                    <button id="sendTestBtn" class="btn-send-message" title="Enviar prueba" style="margin-left:8px; background:#6c757d;">
+                        <i class="bi bi-bug"></i> Prueba
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="proy1.js"></script>
+</body>
+</html>
